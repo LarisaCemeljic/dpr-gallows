@@ -1,20 +1,147 @@
-<form action="/hangman/starter/" method="post">
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+	<body>
+		<form action="/hangman/starter/" method="post">
+		 {% csrf_token %}
+		
+
+		<div style="width:100%"> 
+		 	<div class="lcont">
+		 		 <h1>{{headerName}} </h1>
+				<img src ="http://image.flaticon.com/icons/png/512/43/43980.png">
+			</div>
+
+			<br />
+			<div class="lword">
+			{% for letter in hiddenWord %}
+				<div class="gtext">{{ letter }}</div>
+			{% endfor %}
+			</div>
+		</div>
+
+		<div class="lpicks">
+			<div class="ppicks">
+			 History: 
+				{% for tag in picks %}
+				   {{ tag }}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="hbuttons"> 
+			{% for tag in forma.alpha_list %}
+				<div class="htext"><input type="submit" name="alpha_pick" value={{ tag }} /> </div>
+			{% endfor %}
+		</div>
+		<br/>
+		<p> Cheat: {{cheat}} </p>
+
+		</form>
+	</body>
 
 
-    {% csrf_token %}
- <h1>{{headerName}} </h1>
 
- <p> Zadnji odabiri: </p>
-{% for tag in picks %}
-   {{ tag }}
-{% endfor %}
+<style>
+body {
+    background-color: #2F4E6F;
+}
+h1 {
+   color: black;
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.hbuttons{
+	left: 10%;
+	right: 10%;
+	padding-left: 15px;
+}
+.htext {
+	
+	color: #f3ffff;
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+	float:left;
+   	margin-right:5px;
+   	margin-bottom: 5px;
+}
+
+.lpicks{
+	color: black;
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.ppicks{
+	color: #f3ffff;
+   	background-color: #555555;
+   	text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    padding: 15px;
+
+	border-radius: 15px;
+	border-left-color: #e7e7e7;
+	border-left-width: 20px;
+	border-left-style: solid;
+
+    margin-bottom: 20px;
+
+}
+
+.gtext{
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+	background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 2px;
+    border:2px;
+    border-style: solid;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.lword{
+	  display: table;
+    margin: 0 auto; 
+	
+}
+
+.lcont{
+	  display: table;
+    margin: 0 auto; 
+	
+}
+
+input[type=submit] {
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    border-radius: 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
 
 
-{% for tag in forma.alpha_list %}
-    <p>{{ tag }}</p>
-<input type="submit" name="alpha_pick" value={{ tag }} />
-{% endfor %}
+}
 
+input[type=submit]:hover {
+    background-color: #e7e7e7; 
+    color: black;
+    padding: 15px 32px;
+    border-radius: 10px;
     
-<p> snap! </p>
-</form>
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+</style>
+</html>
